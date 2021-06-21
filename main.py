@@ -1,4 +1,5 @@
 import os, fire, subprocess
+from re import sub
 
 from six import with_metaclass
 
@@ -38,8 +39,13 @@ def main(new_folder_name = ''):
                     
                 with open(os.path.join(folder,'README.md'),'w') as f:
                     f.write('# README CREATED')
-                    
+
                 print('Files Created.')        
+
+            # opening the folder inside VS-Code
+
+            os.chdir(folder)
+            subprocess.run('code .',shell=True)
 
     except Exception as e:
         print('Something Went Wrong ',e)
